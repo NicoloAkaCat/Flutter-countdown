@@ -46,7 +46,7 @@ class MyHome extends StatelessWidget {
                 ),
               width: 300.0,
               height: 400.0,
-              child: MyCountdown(),
+              child: const MyCountdown(),
               ),
             )
         ] 
@@ -64,9 +64,9 @@ class MyCountdown extends StatefulWidget {
 
 class _MyCountdownState extends State<MyCountdown> {
   final DateTime lightfall = DateTime.utc(2023, 2, 22, 18, 0, 0).toLocal();
-  var year = 0, month = 0, day = 0, hours = 0, minutes = 0, seconds = 0;
+  var year, month, day, hours, minutes, seconds;
   void _timer(){
-    Future.delayed(Duration(seconds: 1)).then((_){
+    Future.delayed(const Duration(seconds: 1)).then((_){
       setState(() {
         var now = DateTime.now();
         var difference = lightfall.difference(now);
@@ -74,11 +74,17 @@ class _MyCountdownState extends State<MyCountdown> {
         if(year < 365 ) { year = 0; } 
         else if (year < 730) { year = 1; }
         else { year = 2;}
+        if(year < 10) year = year.toString().padLeft(2, '0');
         month = difference.inDays ~/ 30;
+        if(month < 10) month = month.toString().padLeft(2, '0');
         day = difference.inDays % 30;
+        if(day < 10) day = day.toString().padLeft(2, '0');
         hours = difference.inHours % 24;
+        if(hours < 10) hours = hours.toString().padLeft(2, '0');
         minutes = difference.inMinutes % 60;
+        if(minutes < 10) minutes = minutes.toString().padLeft(2, '0');
         seconds = difference.inSeconds % 60;
+        if(seconds < 10) seconds = seconds.toString().padLeft(2, '0');
       });
       _timer();
     });
