@@ -63,29 +63,22 @@ class MyCountdown extends StatefulWidget {
 }
 
 class _MyCountdownState extends State<MyCountdown> {
-  final DateTime lightfall = DateTime.utc(2023, 2, 22, 18, 0, 0).toLocal();  
-  int year = 0, month = 0, day = 0, hours = 0, minutes = 0, seconds = 0;
+  final DateTime lightfall = DateTime.utc(2023, 2, 22, 18, 0, 0).toLocal();
+  var year, month, day, hours, minutes, seconds;
   void _timer(){
     Future.delayed(Duration(seconds: 1)).then((_){
       setState(() {
-        //year
-        lightfall.year == DateTime.now().year ? 
-        year = 0 : year = lightfall.year - DateTime.now().year - 1;
-        //month
-        month = lightfall.month - DateTime.now().month;
-        if(month <= 0) month += 11;
-        //day
-        day = lightfall.day - DateTime.now().day;
-        if(day <= 0) day += 29;
-        //hours
-        hours = lightfall.hour - DateTime.now().hour;
-        if(hours <= 0) hours += 23;
-        //minutes
-        minutes = lightfall.minute - DateTime.now().minute;
-        if(minutes <= 0) minutes += 59;
-        //seconds
-        seconds = lightfall.second - DateTime.now().second;
-        if(seconds <= 0) seconds += 59;
+        var now = DateTime.now();
+        var difference = lightfall.difference(now);
+        year = difference.inDays;
+        if(year < 365 ) { year = 0; } 
+        else if (year < 730) { year = 1; }
+        else { year = 2;}
+        month = difference.inDays ~/ 30;
+        day = difference.inDays % 30;
+        hours = difference.inHours % 24;
+        minutes = difference.inMinutes % 60;
+        seconds = difference.inSeconds % 60;
       });
       _timer();
     });
@@ -95,7 +88,7 @@ class _MyCountdownState extends State<MyCountdown> {
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('0$year',
+          Text('$year',
           style: const TextStyle(
             color: Colors.white,
             fontSize: 50.0, 
@@ -150,7 +143,13 @@ class _MyCountdownState extends State<MyCountdown> {
         getCountdown(),
         FloatingActionButton(
           onPressed: _timer,
-          child: const Icon(Icons.access_time),
+          child: const Text("START",
+            style: TextStyle(
+              color: Colors.black
+            ),
+          ),
+          backgroundColor: Colors.white,
+          shape: const RoundedRectangleBorder(),
         )
       ],
     );
