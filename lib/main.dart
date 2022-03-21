@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -64,7 +66,7 @@ class MyCountdown extends StatefulWidget {
 
 class _MyCountdownState extends State<MyCountdown> {
   final DateTime lightfall = DateTime.utc(2023, 2, 22, 18, 0, 0).toLocal();
-  var year, month, day, hours, minutes, seconds;
+  var year = 0, month = 0, day = 0, hours = 0, minutes = 0, seconds = 0;
   void _timer(){
     Future.delayed(Duration(seconds: 1)).then((_){
       setState(() {
@@ -91,19 +93,19 @@ class _MyCountdownState extends State<MyCountdown> {
           Text('$year',
           style: const TextStyle(
             color: Colors.white,
-            fontSize: 50.0, 
+            fontSize: 55.0, 
           ),
           ),
           Text('  $month',
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 50.0, 
+              fontSize: 55.0, 
           ),
           ),
           Text('  $day',
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 50.0, 
+              fontSize: 55.0, 
           ),
           )
         ]
@@ -114,19 +116,19 @@ class _MyCountdownState extends State<MyCountdown> {
           Text('$hours',
           style: const TextStyle(
             color: Colors.white,
-            fontSize: 50.0, 
+            fontSize: 55.0, 
           ),
           ),
           Text('  $minutes',
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 50.0, 
+              fontSize: 55.0, 
           ),
           ),
           Text('  $seconds',
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 50.0, 
+              fontSize: 55.0, 
           ),
           )
         ]
@@ -141,15 +143,16 @@ class _MyCountdownState extends State<MyCountdown> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         getCountdown(),
-        FloatingActionButton(
+        FloatingActionButton.large(
           onPressed: _timer,
           child: const Text("START",
             style: TextStyle(
-              color: Colors.black
+              color: Colors.black,
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold
             ),
           ),
           backgroundColor: Colors.white,
-          shape: const RoundedRectangleBorder(),
         )
       ],
     );
