@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -90,51 +88,95 @@ class _MyCountdownState extends State<MyCountdown> {
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('$year',
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 55.0, 
-          ),
-          ),
-          Text('  $month',
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 55.0, 
-          ),
-          ),
-          Text('  $day',
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 55.0, 
-          ),
-          )
-        ]
-      ),
+          Column(children: [
+            Text('$year',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 55.0, 
+              ),
+            ),
+            const Text("YEARS",
+              style: TextStyle(
+                color: Colors.white
+              ),
+            ),
+          ]),
+          const Spacer(),
+          Column(children: [
+            Text('$month',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 55.0, 
+              ),
+            ),
+            const Text("MONTHS",
+              style: TextStyle(
+                color: Colors.white
+              ),
+            ),
+          ]),
+          const Spacer(),
+          Column(children: [
+            Text('$day',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 55.0, 
+              ),
+            ),
+            const Text("DAYS",
+              style: TextStyle(
+                color: Colors.white
+              ),
+            ),
+          ])
+      ]),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('$hours',
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 55.0, 
-          ),
-          ),
-          Text('  $minutes',
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 55.0, 
-          ),
-          ),
-          Text('  $seconds',
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 55.0, 
-          ),
-          )
-        ]
+          Column(children: [
+            Text('$hours',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 55.0
+              ),
+            ),
+            const Text("HOURS",
+              style: TextStyle(
+                color: Colors.white
+              ),
+            )
+          ],),
+          const Spacer(),
+          Column(children: [
+            Text('$minutes',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 55.0
+              ),
+            ),
+            const Text("MINUTES",
+              style: TextStyle(
+                color: Colors.white
+              ),
+            )
+          ],),
+          const Spacer(),
+          Column(children: [
+            Text('$seconds',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 55.0
+              ),
+            ),
+            const Text("SECONDS",
+              style: TextStyle(
+                color: Colors.white
+              ),
+            )
+          ],)
+        ],
       )
-      ]
-    );
+    ]);
   }
 
   @override
